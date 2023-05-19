@@ -6,6 +6,9 @@ public class Breakable : MonoBehaviour
 {
     [SerializeField] private GameObject[] brokenPieces;
     [SerializeField] private int maxPieces = 5;
+    [SerializeField] private bool shouldDropItem;
+    [SerializeField] private GameObject[] itemsToDrop;
+    [SerializeField] private float itemDropPercent;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,6 +18,7 @@ public class Breakable : MonoBehaviour
             {
                 Destroy(gameObject);
 
+                // Spawn broken pieces
                 int piecesToDrop = UnityEngine.Random.Range(1, maxPieces);
 
                 for (int i = 0; i < piecesToDrop; i++)
@@ -22,6 +26,19 @@ public class Breakable : MonoBehaviour
                     int randomPiece = UnityEngine.Random.Range(0, brokenPieces.Length);
 
                     Instantiate(brokenPieces[randomPiece], transform.position, transform.rotation);
+                }
+
+                // Drop items
+                if (shouldDropItem)
+                {
+                    float dropChance = UnityEngine.Random.Range(0f, 100f);
+
+                    if (dropChance <= itemDropPercent)
+                    {
+                        int randomitem = UnityEngine.Random.Range(0, itemsToDrop.Length);
+
+                        Instantiate(itemsToDrop[randomitem], transform.position, transform.rotation);
+                    }
                 }
             }
         }

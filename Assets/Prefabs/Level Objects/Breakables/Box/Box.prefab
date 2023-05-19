@@ -97,25 +97,6 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -152,6 +133,10 @@ MonoBehaviour:
   - {fileID: 5538110579095995737, guid: 65d0c5792b24ca44abd2116670b8c50d, type: 3}
   - {fileID: 2712416339753075461, guid: 1f9a0afd32dad4244ab66d14116303d7, type: 3}
   maxPieces: 6
+  shouldDropItem: 1
+  itemsToDrop:
+  - {fileID: 100733832377633967, guid: 1b920721e4ecad848804d506dc3a15a8, type: 3}
+  itemDropPercent: 25
 --- !u!114 &3284358106553258505
 MonoBehaviour:
   m_ObjectHideFlags: 0
