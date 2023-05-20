@@ -17,13 +17,23 @@ public class UIController : MonoBehaviour
     {
         instance = this;
         deathScreen.gameObject.SetActive(false);
+
+        UpdatePlayerHealthSlider();
+        UpdatePlayerHealthText();
     }
 
     private void Start()
     {
-        PlayerHealth.instance.OnPlayerHealthChange += PlayerHealth_OnPlayerHealthChange;
+        PlayerHealth.instance.OnPlayerDamageTaken += PlayerHealth_OnPlayerDamageTaken;
+        PlayerHealth.instance.OnPlayerHeal += PlayerHealth_OnPlayerHeal;
         PlayerHealth.instance.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
 
+        UpdatePlayerHealthSlider();
+        UpdatePlayerHealthText();
+    }
+
+    private void PlayerHealth_OnPlayerHeal(object sender, EventArgs e)
+    {
         UpdatePlayerHealthSlider();
         UpdatePlayerHealthText();
     }
@@ -33,7 +43,7 @@ public class UIController : MonoBehaviour
         deathScreen.gameObject.SetActive(true);
     }
 
-    private void PlayerHealth_OnPlayerHealthChange(object sender, EventArgs e)
+    private void PlayerHealth_OnPlayerDamageTaken(object sender, EventArgs e)
     {
         UpdatePlayerHealthSlider();
         UpdatePlayerHealthText();
@@ -52,7 +62,8 @@ public class UIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerHealth.instance.OnPlayerHealthChange -= PlayerHealth_OnPlayerHealthChange;
+        PlayerHealth.instance.OnPlayerDamageTaken -= PlayerHealth_OnPlayerDamageTaken;
+        PlayerHealth.instance.OnPlayerHeal -= PlayerHealth_OnPlayerHeal;
         PlayerHealth.instance.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
     }
 }

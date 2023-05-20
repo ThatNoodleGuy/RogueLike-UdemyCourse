@@ -5,13 +5,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance;
+    public static PlayerController instance { get; private set; }
+
+    public event EventHandler OnPlayerDash;
+    public event EventHandler OnPlayerShooting;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
     private float activeMoveSpeed;
     [SerializeField] private float dashSpeed = 8f, dashLength = 0.5f, dashCooldown = 1f, dashInvincibility = 0.5f;
     private float dashCounter, dashCooldownCounter;
+    private bool isDashing = false;
 
     [Header("Shooting")]
     [SerializeField] private Transform gunHand;
@@ -27,18 +31,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     private Animator animator;
 
-
-
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
+        instance = this;
     }
 
     private void Start()
@@ -97,8 +92,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject bulletGameObject = Instantiate(bulletPrefab, gunFirePoint.position, gunFirePoint.rotation);
-
             shotCounter = timeBetweenShots;
+            OnPlayerShooting?.Invoke(this, EventArgs.Empty);
         }
 
         if (Input.GetMouseButton(0))
@@ -107,8 +102,8 @@ public class PlayerController : MonoBehaviour
             if (shotCounter == 0)
             {
                 GameObject bulletGameObject = Instantiate(bulletPrefab, gunFirePoint.position, gunFirePoint.rotation);
-
                 shotCounter = timeBetweenShots;
+                OnPlayerShooting?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -120,17 +115,20 @@ public class PlayerController : MonoBehaviour
                 dashCounter = dashLength;
 
                 animator.SetTrigger("Dash");
+                OnPlayerDash?.Invoke(this, EventArgs.Empty);
                 PlayerHealth.instance.MakeInvincible(dashInvincibility);
             }
         }
 
         if (dashCounter > 0)
         {
+            isDashing = true;
             dashCounter -= Time.deltaTime;
             if (dashCounter <= 0)
             {
                 activeMoveSpeed = moveSpeed;
                 dashCooldownCounter = dashCooldown;
+                isDashing = false;
             }
         }
 
@@ -148,5 +146,10 @@ public class PlayerController : MonoBehaviour
     public float GetDashCounter()
     {
         return dashCounter;
+    }
+
+    public bool IsDashing()
+    {
+        return isDashing;
     }
 }

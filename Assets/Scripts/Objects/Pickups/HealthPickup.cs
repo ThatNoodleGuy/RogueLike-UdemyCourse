@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
+    public static event EventHandler OnHealthPickup;
+
     [SerializeField] private int healAmount = 1;
     [SerializeField] private float waitToBeCollected = 0.5f;
 
@@ -21,6 +24,7 @@ public class HealthPickup : MonoBehaviour
         {
             PlayerHealth.instance.HealPlayer(healAmount);
             Destroy(gameObject);
+            OnHealthPickup?.Invoke(this, EventArgs.Empty);
         }
     }
 }

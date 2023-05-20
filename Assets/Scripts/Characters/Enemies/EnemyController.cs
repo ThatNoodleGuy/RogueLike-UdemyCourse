@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public static event EventHandler OnEnemyHealthChange;
+    public static event EventHandler OnEnemyDeath;
+    public static event EventHandler OnEnemyShooting;
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rangeToChasePlayer;
     [SerializeField] private float rangeToShootAtPlayer;
@@ -86,6 +90,7 @@ public class EnemyController : MonoBehaviour
             {
                 fireCounter = fireRate;
                 GameObject enemyBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                OnEnemyShooting?.Invoke(this, EventArgs.Empty);
             }
         }
     }
@@ -93,12 +98,14 @@ public class EnemyController : MonoBehaviour
     public void DamageEnemy(int damage)
     {
         health -= damage;
+        OnEnemyHealthChange?.Invoke(this, EventArgs.Empty);
 
         Instantiate(hitVFX, transform.position, transform.rotation);
 
         if (health <= 0)
         {
             Destroy(gameObject);
+            OnEnemyDeath?.Invoke(this, EventArgs.Empty);
 
             int selectedSplatter = UnityEngine.Random.Range(0, deathSplatters.Length);
             int randomRotation = UnityEngine.Random.Range(0, 30);

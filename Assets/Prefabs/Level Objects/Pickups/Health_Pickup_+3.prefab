@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 100733832377633952}
   - component: {fileID: 100733832377633954}
   - component: {fileID: 100733832377633955}
-  m_Layer: 0
-  m_Name: Health_Pickup
+  m_Layer: 12
+  m_Name: Health_Pickup_+3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -803590245
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3596705950354237480, guid: fb2a687d5414ef4459761bcb1a9529e6, type: 3}
+  m_Sprite: {fileID: 384700277192883564, guid: fb2a687d5414ef4459761bcb1a9529e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,4 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4324933034b7d204890f3e5ba78be1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 1
+  healAmount: 3
+  waitToBeCollected: 0.5

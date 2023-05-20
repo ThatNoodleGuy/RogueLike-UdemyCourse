@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class EnemyBulletController : MonoBehaviour
 {
+    public static event EventHandler OnBulletImpact;
+
     [SerializeField] private float moveSpeed;
+    [SerializeField] private ParticleSystem bulletImpactEffect;
 
     private Vector3 direction;
 
@@ -21,12 +24,14 @@ public class EnemyBulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        ParticleSystem impactEffect = Instantiate(bulletImpactEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
+        OnBulletImpact?.Invoke(this, EventArgs.Empty);
+
         if (other.GetComponent<PlayerController>())
         {
             PlayerHealth.instance.DamagePlayer();
         }
-
-        Destroy(gameObject);
     }
 
     private void OnBecameInvisible()

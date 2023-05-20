@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7501846545347163199}
   - component: {fileID: 2876581695175927717}
   - component: {fileID: 3284358106553258505}
-  m_Layer: 0
+  - component: {fileID: 222191952400029011}
+  m_Layer: 10
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +137,7 @@ MonoBehaviour:
   shouldDropItem: 1
   itemsToDrop:
   - {fileID: 100733832377633967, guid: 1b920721e4ecad848804d506dc3a15a8, type: 3}
+  - {fileID: 100733832377633967, guid: 4d93a139d0fd4324db886947a000a01b, type: 3}
   itemDropPercent: 25
 --- !u!114 &3284358106553258505
 MonoBehaviour:
@@ -149,3 +151,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde66875b6390874c8c1e1bc837de8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &222191952400029011
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2642555424012340193}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8125, y: 1}
+    newSize: {x: 0.8125, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.69, y: 0.88}
+  m_EdgeRadius: 0

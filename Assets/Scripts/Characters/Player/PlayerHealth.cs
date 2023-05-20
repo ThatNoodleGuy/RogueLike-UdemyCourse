@@ -7,7 +7,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth instance { get; private set; }
 
-    public event EventHandler OnPlayerHealthChange;
+    public event EventHandler OnPlayerDamageTaken;
+    public event EventHandler OnPlayerHeal;
     public event EventHandler OnPlayerDeath;
 
     [SerializeField] private int currentHealth;
@@ -23,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth = maxHealth;
 
-        OnPlayerHealthChange?.Invoke(this, EventArgs.Empty);
+        //OnPlayerHealthChange?.Invoke(this, EventArgs.Empty);
     }
 
     private void Start()
@@ -62,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth--;
 
-            OnPlayerHealthChange?.Invoke(this, EventArgs.Empty);
+            OnPlayerDamageTaken?.Invoke(this, EventArgs.Empty);
 
             invincibilityCounter = damageInvincLength;
             playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0.4f);
@@ -85,13 +86,8 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth += healAmount;
 
-        // if (currentHealth > maxHealth)
-        // {
-        //     currentHealth = maxHealth;
-        // }
-
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        OnPlayerHealthChange?.Invoke(this, EventArgs.Empty);
+        OnPlayerHeal?.Invoke(this, EventArgs.Empty);
     }
 }

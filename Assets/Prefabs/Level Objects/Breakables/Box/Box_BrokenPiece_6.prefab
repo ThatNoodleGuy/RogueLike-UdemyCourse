@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2780551599582143366}
   - component: {fileID: 4156501718658033879}
   - component: {fileID: -5220067700763901816}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box_BrokenPiece_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4156501718658033879
 SpriteRenderer:
