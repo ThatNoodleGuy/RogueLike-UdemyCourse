@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashSpeed = 8f, dashLength = 0.5f, dashCooldown = 1f, dashInvincibility = 0.5f;
     private float dashCounter, dashCooldownCounter;
     private bool isDashing = false;
+    [HideInInspector]
+    [SerializeField] private bool canMove = true;
 
     [Header("Shooting")]
     [SerializeField] private Transform gunHand;
@@ -46,8 +48,18 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
-        HandleGun();
+        if (!canMove)
+        {
+            playerRB.velocity = Vector2.zero;
+            animator.SetBool("IsMoving", false);
+            return;
+        }
+
+        if (!LevelManager.instance.IsPaused())
+        {
+            HandleMovement();
+            HandleGun();
+        }
     }
 
     private void HandleMovement()
@@ -66,6 +78,36 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("IsMoving", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dashCooldownCounter <= 0 && dashCounter <= 0)
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+
+                animator.SetTrigger("Dash");
+                OnPlayerDash?.Invoke(this, EventArgs.Empty);
+                PlayerHealth.instance.MakeInvincible(dashInvincibility);
+            }
+        }
+
+        if (dashCounter > 0)
+        {
+            isDashing = true;
+            dashCounter -= Time.deltaTime;
+            if (dashCounter <= 0)
+            {
+                activeMoveSpeed = moveSpeed;
+                dashCooldownCounter = dashCooldown;
+                isDashing = false;
+            }
+        }
+
+        if (dashCooldownCounter > 0)
+        {
+            dashCooldownCounter -= Time.deltaTime;
         }
     }
 
@@ -106,36 +148,6 @@ public class PlayerController : MonoBehaviour
                 OnPlayerShooting?.Invoke(this, EventArgs.Empty);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (dashCooldownCounter <= 0 && dashCounter <= 0)
-            {
-                activeMoveSpeed = dashSpeed;
-                dashCounter = dashLength;
-
-                animator.SetTrigger("Dash");
-                OnPlayerDash?.Invoke(this, EventArgs.Empty);
-                PlayerHealth.instance.MakeInvincible(dashInvincibility);
-            }
-        }
-
-        if (dashCounter > 0)
-        {
-            isDashing = true;
-            dashCounter -= Time.deltaTime;
-            if (dashCounter <= 0)
-            {
-                activeMoveSpeed = moveSpeed;
-                dashCooldownCounter = dashCooldown;
-                isDashing = false;
-            }
-        }
-
-        if (dashCooldownCounter > 0)
-        {
-            dashCooldownCounter -= Time.deltaTime;
-        }
     }
 
     public SpriteRenderer GetSpriteRenderer()
@@ -151,5 +163,10 @@ public class PlayerController : MonoBehaviour
     public bool IsDashing()
     {
         return isDashing;
+    }
+
+    public void ToggleCanMove()
+    {
+        canMove = !canMove;
     }
 }

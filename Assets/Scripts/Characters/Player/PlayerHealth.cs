@@ -10,10 +10,11 @@ public class PlayerHealth : MonoBehaviour
     public event EventHandler OnPlayerDamageTaken;
     public event EventHandler OnPlayerHeal;
     public event EventHandler OnPlayerDeath;
+    public event EventHandler OnPlayerSpawn;
 
-    [SerializeField] private int currentHealth;
-    [SerializeField] private int maxHealth;
-    [SerializeField] private float damageInvincLength = 1f;
+    [SerializeField] int currentHealth;
+    [SerializeField] int maxHealth;
+    [SerializeField] float damageInvincLength = 1f;
 
     private float invincibilityCounter;
     private SpriteRenderer playerSprite;
@@ -21,10 +22,9 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        OnPlayerSpawn?.Invoke(this, EventArgs.Empty);
 
         currentHealth = maxHealth;
-
-        //OnPlayerHealthChange?.Invoke(this, EventArgs.Empty);
     }
 
     private void Start()
@@ -47,12 +47,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public int GetCurrenthealth()
+    public int GetCurrentHealth()
     {
         return currentHealth;
     }
 
-    public int GetMaxhealth()
+    public int GetMaxHealth()
     {
         return maxHealth;
     }

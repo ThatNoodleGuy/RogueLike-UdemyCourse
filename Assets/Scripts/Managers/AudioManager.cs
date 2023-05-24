@@ -29,6 +29,12 @@ public class AudioManager : MonoBehaviour
         PlayerBulletController.OnBulletImpact += PlayerBulletController_OnBulletImpact;
         EnemyBulletController.OnBulletImpact += EnemyBulletController_OnBulletImpact;
         HealthPickup.OnHealthPickup += HealthPickup_OnHealthPickup;
+        LevelManager.instance.OnLevelExit += LevelManager_OnLevelExit;
+    }
+
+    private void LevelManager_OnLevelExit(object sender, EventArgs e)
+    {
+        PlayLevelWinMusic();
     }
 
     private void EnemyController_OnEnemyShooting(object sender, EventArgs e)
@@ -119,5 +125,20 @@ public class AudioManager : MonoBehaviour
     {
         sfxClips[sfxNum].Stop();
         sfxClips[sfxNum].Play();
+    }
+
+    private void OnDestroy()
+    {
+        PlayerHealth.instance.OnPlayerDamageTaken -= PlayerHealth_OnPlayerDamageTaken;
+        PlayerHealth.instance.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
+        PlayerController.instance.OnPlayerDash -= PlayerController_OnPlayerDash;
+        PlayerController.instance.OnPlayerShooting -= PlayerController_OnPlayerShooting;
+        Breakable.OnObjectBreak -= Breakable_OnObjectBreak;
+        EnemyController.OnEnemyHealthChange -= EnemyController_OnEnemyHealthChange;
+        EnemyController.OnEnemyDeath -= EnemyController_OnEnemyDeath;
+        EnemyController.OnEnemyShooting -= EnemyController_OnEnemyShooting;
+        PlayerBulletController.OnBulletImpact -= PlayerBulletController_OnBulletImpact;
+        EnemyBulletController.OnBulletImpact -= EnemyBulletController_OnBulletImpact;
+        HealthPickup.OnHealthPickup -= HealthPickup_OnHealthPickup;
     }
 }
