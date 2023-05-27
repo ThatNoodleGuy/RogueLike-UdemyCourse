@@ -47,25 +47,6 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -99,12 +80,6 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -143,20 +118,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  shouldChasePlayer: 1
   rangeToChasePlayer: 7
+  shouldRunAway: 0
+  runAwayRange: 0
+  shouldWander: 0
+  wanderLength: 0
+  pauseLength: 0
+  shouldPatrol: 0
+  patrolPoints: []
+  shouldShoot: 1
+  bulletPrefab: {fileID: 144755547753219593, guid: fd6a41753b4e68c4daba9cad49728579, type: 3}
+  firePoint: {fileID: 3382416955119251723}
+  fireRate: 1
   rangeToShootAtPlayer: 10
   health: 150
+  spriteRenderer: {fileID: 6401198666552754497}
   deathSplatters:
   - {fileID: 1981810898576496866, guid: 612ba8d800d5f2546b62a1759162b7c5, type: 3}
   - {fileID: 2867365214991116543, guid: 57cf3ab5231e0ce46bc00f4777794c07, type: 3}
   - {fileID: 5230822978992569570, guid: ab810276b781fb145b379986a15dba20, type: 3}
   - {fileID: 6745267188565277623, guid: e4bc27f9c0f30d34e93154921f7a3ebd, type: 3}
   hitVFX: {fileID: 2055042284966372222, guid: eb90cc6a85cfcb14f8b7a75bad0f7349, type: 3}
-  shouldShoot: 1
-  bulletPrefab: {fileID: 144755547753219593, guid: fd6a41753b4e68c4daba9cad49728579, type: 3}
-  firePoint: {fileID: 3382416955119251723}
-  fireRate: 1
-  spriteRenderer: {fileID: 6401198666552754497}
 --- !u!1 &4242873073139050013
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +169,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4894108050138098369}
-  m_RootOrder: -1
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6973423216245650053
 GameObject:
@@ -218,7 +201,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4894108050138098369}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6401198666552754497
 SpriteRenderer:

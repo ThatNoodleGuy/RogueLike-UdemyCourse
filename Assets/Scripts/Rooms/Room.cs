@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField] private bool closeWhenEntered = false;
-    [SerializeField] private bool openWhenEnemiesCleared = false;
+    public bool closeWhenEntered = false;
+    // [SerializeField] private bool openWhenEnemiesCleared = false;
     [SerializeField] private GameObject[] doors;
-    [SerializeField] private List<GameObject> enemies = new List<GameObject>();
+    // [SerializeField] private List<GameObject> enemies = new List<GameObject>();
 
     private bool isRoomActive;
 
     private void Update()
     {
+        /*
         if (enemies.Count > 0 && isRoomActive && openWhenEnemiesCleared)
         {
             for (int i = 0; i < enemies.Count; i++)
@@ -35,6 +36,7 @@ public class Room : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -55,11 +57,26 @@ public class Room : MonoBehaviour
         }
     }
 
+    public void OpenDoors()
+    {
+        foreach (GameObject door in doors)
+        {
+            door.SetActive(false);
+
+            closeWhenEntered = false;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.GetComponent<PlayerController>())
         {
             isRoomActive = false;
         }
+    }
+
+    public bool GetIsRoomActive()
+    {
+        return isRoomActive;
     }
 }
