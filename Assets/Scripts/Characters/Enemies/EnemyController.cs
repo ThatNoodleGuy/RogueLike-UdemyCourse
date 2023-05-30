@@ -55,7 +55,6 @@ public class EnemyController : MonoBehaviour
     {
         bodyRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
@@ -63,13 +62,16 @@ public class EnemyController : MonoBehaviour
         if (shouldWander)
         {
             pauseCounter = UnityEngine.Random.Range(pauseLength * 0.75f, pauseLength * 1.25f);
-            wanderCounter = UnityEngine.Random.Range(wanderLength * 0.75f, wanderLength * 1.25f);
         }
     }
 
     private void Update()
     {
-        if (spriteRenderer.isVisible && PlayerController.instance.gameObject.activeInHierarchy)
+        if (!spriteRenderer.isVisible)
+        {
+            return;
+        }
+        else if (spriteRenderer.isVisible && PlayerController.instance.gameObject.activeInHierarchy)
         {
             moveDir = Vector3.zero;
 

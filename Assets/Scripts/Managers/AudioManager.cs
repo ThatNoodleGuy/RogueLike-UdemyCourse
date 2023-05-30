@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
         PlayerHealth.instance.OnPlayerDamageTaken += PlayerHealth_OnPlayerDamageTaken;
         PlayerHealth.instance.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
         PlayerController.instance.OnPlayerDash += PlayerController_OnPlayerDash;
-        PlayerController.instance.OnPlayerShooting += PlayerController_OnPlayerShooting;
+        Gun.OnPlayerShooting += Gun_OnPlayerShooting;
         Breakable.OnObjectBreak += Breakable_OnObjectBreak;
         EnemyController.OnEnemyHealthChange += EnemyController_OnEnemyHealthChange;
         EnemyController.OnEnemyDeath += EnemyController_OnEnemyDeath;
@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
         PlaySFXNum(randomNum);
     }
 
-    private void PlayerController_OnPlayerShooting(object sender, EventArgs e)
+    private void Gun_OnPlayerShooting(object sender, EventArgs e)
     {
         int randomNum = UnityEngine.Random.Range(12, 18);
         PlaySFXNum(randomNum);
@@ -149,7 +149,7 @@ public class AudioManager : MonoBehaviour
         PlayerHealth.instance.OnPlayerDamageTaken -= PlayerHealth_OnPlayerDamageTaken;
         PlayerHealth.instance.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
         PlayerController.instance.OnPlayerDash -= PlayerController_OnPlayerDash;
-        PlayerController.instance.OnPlayerShooting -= PlayerController_OnPlayerShooting;
+        Gun.OnPlayerShooting -= Gun_OnPlayerShooting;
         Breakable.OnObjectBreak -= Breakable_OnObjectBreak;
         EnemyController.OnEnemyHealthChange -= EnemyController_OnEnemyHealthChange;
         EnemyController.OnEnemyDeath -= EnemyController_OnEnemyDeath;
