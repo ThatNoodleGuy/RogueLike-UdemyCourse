@@ -2298,7 +2298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 0}
+  - {fileID: 2700353759824605092}
   openWhenEnemiesCleared: 1
   room: {fileID: 0}
 --- !u!1 &8700003114318944576
@@ -2455,6 +2455,11 @@ PrefabInstance:
       objectReference: {fileID: 7343390418187929695}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
+--- !u!1 &2700353759824605092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 578092170536957891, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
+  m_PrefabInstance: {fileID: 3277598720949377127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8235810450954782331 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6860995797323505180, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}

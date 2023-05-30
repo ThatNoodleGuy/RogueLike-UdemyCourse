@@ -11,13 +11,17 @@ public class UIController : MonoBehaviour
 
     [SerializeField] private Slider playerHealthSlider;
     [SerializeField] private TextMeshProUGUI playerHealthText;
+    [SerializeField] private TextMeshProUGUI playerCoinText;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private Image fadeScreen;
     [SerializeField] private float levelFadeTime;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject mapDisplay;
+    [SerializeField] private TextMeshProUGUI mapExitText;
 
     private bool fadeToBlack, fadeOutBlack;
     private int playerMaxHealth = 0, playerCurrentHealth = 0;
+    private int currentCoins = 0;
 
     private void Awake()
     {
@@ -31,15 +35,35 @@ public class UIController : MonoBehaviour
         fadeOutBlack = true;
         fadeToBlack = false;
 
+        mapExitText.gameObject.SetActive(false);
+
         playerCurrentHealth = PlayerHealth.instance.GetCurrentHealth();
         playerMaxHealth = PlayerHealth.instance.GetMaxHealth();
-        playerHealthSlider.maxValue = playerMaxHealth;
-        playerHealthSlider.value = playerCurrentHealth;
-        playerHealthText.text = (playerCurrentHealth + "/" + playerMaxHealth);
+        currentCoins = LevelManager.instance.GetCurrentCoins();
+        UpdatePlayerHealthBarAndText();
+        UpdatePlayerCoinsText();
 
         PlayerHealth.instance.OnPlayerDamageTaken += PlayerHealth_OnPlayerDamageTaken;
         PlayerHealth.instance.OnPlayerHeal += PlayerHealth_OnPlayerHeal;
         PlayerHealth.instance.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
+        PlayerHealth.instance.OnPlayerHealthUpgrade += PlayerHealth_OnPlayerHealthUpgrade;
+        CoinPickup.OnCoinPickup += CoinPickup_OnCoinPickup;
+        LevelManager.instance.OnCoinsChanged += LevelManager_OnCoinsChanged;
+    }
+
+    private void PlayerHealth_OnPlayerHealthUpgrade(object sender, EventArgs e)
+    {
+        UpdatePlayerHealthBarAndText();
+    }
+
+    private void LevelManager_OnCoinsChanged(object sender, EventArgs e)
+    {
+        UpdatePlayerCoinsText();
+    }
+
+    private void CoinPickup_OnCoinPickup(object sender, EventArgs e)
+    {
+        UpdatePlayerCoinsText();
     }
 
     private void Update()
@@ -69,11 +93,19 @@ public class UIController : MonoBehaviour
         playerHealthText.text = (PlayerHealth.instance.GetCurrentHealth() + "/" + PlayerHealth.instance.GetMaxHealth());
     }
 
+    public void UpdatePlayerCoinsText()
+    {
+        currentCoins = LevelManager.instance.GetCurrentCoins();
+
+        playerCoinText.text = currentCoins.ToString();
+    }
+
     private void OnDestroy()
     {
         PlayerHealth.instance.OnPlayerDamageTaken -= PlayerHealth_OnPlayerDamageTaken;
         PlayerHealth.instance.OnPlayerHeal -= PlayerHealth_OnPlayerHeal;
         PlayerHealth.instance.OnPlayerDeath -= PlayerHealth_OnPlayerDeath;
+        CoinPickup.OnCoinPickup -= CoinPickup_OnCoinPickup;
     }
 
     private void Fade()
@@ -111,5 +143,15 @@ public class UIController : MonoBehaviour
     public void Resume()
     {
         LevelManager.instance.PauseUnpause();
+    }
+
+    public GameObject GetMapDisplay()
+    {
+        return mapDisplay;
+    }
+
+    public GameObject GetBigMapTextGameObject()
+    {
+        return mapExitText.gameObject;
     }
 }

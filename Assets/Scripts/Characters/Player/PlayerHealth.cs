@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public event EventHandler OnPlayerHeal;
     public event EventHandler OnPlayerDeath;
     public event EventHandler OnPlayerSpawn;
+    public event EventHandler OnPlayerHealthUpgrade;
 
     [SerializeField] int currentHealth;
     [SerializeField] int maxHealth;
@@ -55,6 +56,14 @@ public class PlayerHealth : MonoBehaviour
     public int GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public void UpgradeHealth(int amount)
+    {
+        maxHealth += amount;
+        currentHealth = maxHealth;
+
+        OnPlayerHealthUpgrade?.Invoke(this, EventArgs.Empty);
     }
 
     public void DamagePlayer()

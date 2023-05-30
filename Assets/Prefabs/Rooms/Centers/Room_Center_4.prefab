@@ -2442,15 +2442,15 @@ PrefabInstance:
     - target: {fileID: 9213777564993645328, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 8591681114468458699}
+      objectReference: {fileID: 283403779716325973}
     - target: {fileID: 9213777564993645328, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
       propertyPath: patrolPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 6716427449901165883}
+      objectReference: {fileID: 8591681114468458699}
     - target: {fileID: 9213777564993645328, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
       propertyPath: patrolPoints.Array.data[2]
       value: 
-      objectReference: {fileID: 283403779716325973}
+      objectReference: {fileID: 6716427449901165883}
     - target: {fileID: 9213777564993645328, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
       propertyPath: patrolPoints.Array.data[3]
       value: 

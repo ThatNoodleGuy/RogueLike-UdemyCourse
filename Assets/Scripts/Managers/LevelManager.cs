@@ -9,12 +9,14 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance { get; private set; }
 
     public event EventHandler OnLevelExit;
+    public event EventHandler OnCoinsChanged;
 
     [SerializeField] private float waitToLoad = 4f;
     [SerializeField] private string nextLevel;
     [SerializeField] private string firstLevelScene;
     [SerializeField] private string mainMenuScene;
     [SerializeField] private bool isPaused;
+    [SerializeField] private int currentCoins;
 
     private void Awake()
     {
@@ -28,12 +30,14 @@ public class LevelManager : MonoBehaviour
         {
             PauseUnpause();
         }
+
+        currentCoins = Mathf.Clamp(currentCoins, 0, int.MaxValue);
     }
 
     public IEnumerator LevelEnd()
     {
         OnLevelExit?.Invoke(this, EventArgs.Empty);
-        PlayerController.instance.ToggleCanMove();
+        PlayerController.instance.PlayerCantMove();
         UIController.instance.StartFadeToBlack();
         yield return new WaitForSeconds(waitToLoad);
         SceneManager.LoadScene(nextLevel);
@@ -70,5 +74,22 @@ public class LevelManager : MonoBehaviour
     public bool IsPaused()
     {
         return isPaused;
+    }
+
+    public void GetCoins(int amount)
+    {
+        OnCoinsChanged?.Invoke(this, EventArgs.Empty);
+        currentCoins += amount;
+    }
+
+    public void SpendCoins(int amount)
+    {
+        currentCoins -= amount;
+        OnCoinsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public int GetCurrentCoins()
+    {
+        return currentCoins;
     }
 }

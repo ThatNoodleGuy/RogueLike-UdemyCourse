@@ -18,7 +18,6 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         PlayerHealth.instance.OnPlayerDamageTaken += PlayerHealth_OnPlayerDamageTaken;
-        //PlayerHealth.instance.OnPlayerHeal += PlayerHealth_OnPlayerHeal;
         PlayerHealth.instance.OnPlayerDeath += PlayerHealth_OnPlayerDeath;
         PlayerController.instance.OnPlayerDash += PlayerController_OnPlayerDash;
         PlayerController.instance.OnPlayerShooting += PlayerController_OnPlayerShooting;
@@ -30,6 +29,24 @@ public class AudioManager : MonoBehaviour
         EnemyBulletController.OnBulletImpact += EnemyBulletController_OnBulletImpact;
         HealthPickup.OnHealthPickup += HealthPickup_OnHealthPickup;
         LevelManager.instance.OnLevelExit += LevelManager_OnLevelExit;
+        CoinPickup.OnCoinPickup += CoinPickup_OnCoinPickup;
+        ShopItem.OnBuyItem += ShopItem_OnBuyItem;
+        ShopItem.OnCanNotBuy += ShopItem_OnCanNotBuy;
+    }
+
+    private void ShopItem_OnCanNotBuy(object sender, EventArgs e)
+    {
+        PlaySFX("Shop Not Enough");
+    }
+
+    private void ShopItem_OnBuyItem(object sender, EventArgs e)
+    {
+        PlaySFX("Shop Buy");
+    }
+
+    private void CoinPickup_OnCoinPickup(object sender, EventArgs e)
+    {
+        PlaySFX("Pickup Coin");
     }
 
     private void LevelManager_OnLevelExit(object sender, EventArgs e)

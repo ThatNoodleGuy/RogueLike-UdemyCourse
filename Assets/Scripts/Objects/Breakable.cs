@@ -42,7 +42,6 @@ public class Breakable : MonoBehaviour
                     Instantiate(itemsToDrop[randomitem], transform.position, transform.rotation);
                 }
             }
-
         }
     }
 }

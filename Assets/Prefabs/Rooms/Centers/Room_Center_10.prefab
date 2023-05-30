@@ -2716,8 +2716,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9213777564993645328, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
       propertyPath: patrolPoints.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9213777564993645328, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
+      propertyPath: patrolPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 7343390418532894976}
+    - target: {fileID: 9213777564993645328, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
+      propertyPath: patrolPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 7343390419511098129}
+    - target: {fileID: 9213777564993645328, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
+      propertyPath: patrolPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 7343390418187929695}
+    - target: {fileID: 9213777564993645328, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
+      propertyPath: patrolPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 2937458784364196752}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bed12d2c80e96e74fb017ec9145764d0, type: 3}
 --- !u!1 &3339317755877940524 stripped

@@ -79,7 +79,11 @@ MonoBehaviour:
   layoutRoom: {fileID: 239648846886821400, guid: bdc71a811c1d7544c9e96cb74485a6f9, type: 3}
   startColor: {r: 0, g: 0.9529412, b: 1, a: 1}
   endColor: {r: 1, g: 0, b: 0, a: 1}
+  shopColor: {r: 1, g: 0.9, b: 0, a: 1}
   distanceToEnd: 10
+  shouldIncludeShop: 1
+  minDistanceToShop: 3
+  maxDistanceToShop: 7
   generatorPoint: {fileID: 705989215351737667}
   selectedDirection: 0
   xOffset: 18
@@ -165,6 +169,7 @@ MonoBehaviour:
     prefab: {fileID: 4420861237050011478, guid: 2360b1d574750504f8dea1573098c6c9, type: 3}
   centerStart: {fileID: 1939975385842920865, guid: 38e5ba67bb7b8394f92bab3365b94504, type: 3}
   centerEnd: {fileID: 805176724686972227, guid: c58d4c98209ca23449275ad5923bfd83, type: 3}
+  centerShop: {fileID: 11368031437256212, guid: 09735f23b04afa04fa1203a6c63bca74, type: 3}
   potantialCenters:
   - {fileID: 1939975385842920865, guid: 38e5ba67bb7b8394f92bab3365b94504, type: 3}
   - {fileID: 6710597528244620322, guid: 959f1486748f3614ea205cabaf7d23ff, type: 3}
@@ -185,4 +190,4 @@ MonoBehaviour:
   - {fileID: 8700003112993300527, guid: e365a28a3b4c11d448b1279d6819e01d, type: 3}
   - {fileID: 8700003112993300527, guid: a76b1c171deaf134d87f9d62c8c90c0b, type: 3}
   - {fileID: 8700003112993300527, guid: 6dcd3ac2078ec97479e10bfdd433ebfd, type: 3}
-  - {fileID: 8700003112993300527, guid: 3a62cbd7b8e3af0438f4377f4934a1e6, type: 3}
+  - {fileID: 8700003112993300527, guid: 3e42e298886af124a83ffe832f0566b8, type: 3}

@@ -2319,8 +2319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4371260337393329020}
+  - {fileID: 7855243354688360600}
   openWhenEnemiesCleared: 1
   room: {fileID: 0}
 --- !u!1 &8700003114318944576
@@ -2458,6 +2458,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffd5baa82e55a8441996581cbe798ca2, type: 3}
+--- !u!1 &4371260337393329020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3665159083259955849, guid: ffd5baa82e55a8441996581cbe798ca2, type: 3}
+  m_PrefabInstance: {fileID: 1041621076176857589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7753855549434038947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7345281192052253526, guid: ffd5baa82e55a8441996581cbe798ca2, type: 3}
@@ -2523,5 +2528,10 @@ PrefabInstance:
 --- !u!4 &4193276359899019591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7345281192052253526, guid: ffd5baa82e55a8441996581cbe798ca2, type: 3}
+  m_PrefabInstance: {fileID: 6908008296988482065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7855243354688360600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3665159083259955849, guid: ffd5baa82e55a8441996581cbe798ca2, type: 3}
   m_PrefabInstance: {fileID: 6908008296988482065}
   m_PrefabAsset: {fileID: 0}

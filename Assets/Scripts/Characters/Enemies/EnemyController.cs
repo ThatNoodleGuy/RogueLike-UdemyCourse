@@ -44,6 +44,9 @@ public class EnemyController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject[] deathSplatters;
     [SerializeField] private GameObject hitVFX;
+    [SerializeField] private bool shouldDropItem;
+    [SerializeField] private GameObject[] itemsToDrop;
+    [SerializeField] private float itemDropPercent;
 
     private Rigidbody2D bodyRB;
     private Animator animator;
@@ -179,6 +182,18 @@ public class EnemyController : MonoBehaviour
 
             int selectedSplatter = UnityEngine.Random.Range(0, deathSplatters.Length);
             int randomRotation = UnityEngine.Random.Range(0, 30);
+
+            if (shouldDropItem)
+            {
+                float dropChance = UnityEngine.Random.Range(0f, 100f);
+
+                if (dropChance <= itemDropPercent)
+                {
+                    int randomitem = UnityEngine.Random.Range(0, itemsToDrop.Length);
+
+                    Instantiate(itemsToDrop[randomitem], transform.position, transform.rotation);
+                }
+            }
 
             Instantiate(deathSplatters[selectedSplatter], transform.position, Quaternion.Euler(0f, 0f, randomRotation * 90f));
         }

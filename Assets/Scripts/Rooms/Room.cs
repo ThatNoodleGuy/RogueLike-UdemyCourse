@@ -6,37 +6,14 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public bool closeWhenEntered = false;
-    // [SerializeField] private bool openWhenEnemiesCleared = false;
     [SerializeField] private GameObject[] doors;
-    // [SerializeField] private List<GameObject> enemies = new List<GameObject>();
+    [SerializeField] private GameObject mapHider;
 
     private bool isRoomActive;
 
-    private void Update()
+    private void Start()
     {
-        /*
-        if (enemies.Count > 0 && isRoomActive && openWhenEnemiesCleared)
-        {
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                if (enemies[i] == null)
-                {
-                    enemies.RemoveAt(i);
-                    i--;
-                }
-            }
-
-            if (enemies.Count == 0)
-            {
-                foreach (GameObject door in doors)
-                {
-                    door.SetActive(false);
-
-                    closeWhenEntered = false;
-                }
-            }
-        }
-        */
+        mapHider.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,6 +31,7 @@ public class Room : MonoBehaviour
             }
 
             isRoomActive = true;
+            mapHider.SetActive(false);
         }
     }
 

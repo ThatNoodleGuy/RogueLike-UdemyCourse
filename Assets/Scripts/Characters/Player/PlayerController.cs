@@ -165,8 +165,13 @@ public class PlayerController : MonoBehaviour
         return isDashing;
     }
 
-    public void ToggleCanMove()
+    public void PlayerCanMove()
     {
-        canMove = !canMove;
+        canMove = true;
+    }
+
+    public void PlayerCantMove()
+    {
+        canMove = false;
     }
 }

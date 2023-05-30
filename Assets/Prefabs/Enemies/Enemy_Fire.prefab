@@ -145,6 +145,11 @@ MonoBehaviour:
   - {fileID: 5230822978992569570, guid: ab810276b781fb145b379986a15dba20, type: 3}
   - {fileID: 6745267188565277623, guid: e4bc27f9c0f30d34e93154921f7a3ebd, type: 3}
   hitVFX: {fileID: 2055042284966372222, guid: eb90cc6a85cfcb14f8b7a75bad0f7349, type: 3}
+  shouldDropItem: 1
+  itemsToDrop:
+  - {fileID: 4486821751643375388, guid: 994eb3e9b1d4b9547afeeee3d76129ae, type: 3}
+  - {fileID: 4486821751643375388, guid: ea18e001ee447794a93b0baba0eb2f66, type: 3}
+  itemDropPercent: 25
 --- !u!114 &7596233840744642495
 MonoBehaviour:
   m_ObjectHideFlags: 0
